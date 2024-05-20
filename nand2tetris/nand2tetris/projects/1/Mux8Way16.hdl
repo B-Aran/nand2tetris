@@ -20,5 +20,18 @@ CHIP Mux8Way16 {
     OUT out[16];
 
     PARTS:
-    //// Replace this comment with your code.
+
+    // First rounds
+    // Get by pairs, based on sel 0
+    Mux16(sel=sel[0], a=a, b=b, out=outAB);
+    Mux16(sel=sel[0], a=c, b=d, out=outCD);
+    Mux16(sel=sel[0], a=e, b=f, out=outEF);
+    Mux16(sel=sel[0], a=g, b=h, out=outGH);
+    
+    // Second round, filter by sel[1]
+    Mux16(sel=sel[1], a=outAB, b=outCD, out=outFirstPairs);
+    Mux16(sel=sel[1], a=outEF, b=outGH, out=outSecondPairs);
+
+    // Last one
+    Mux16(sel=sel[2], a=outFirstPairs, b=outSecondPairs, out=out);
 }

@@ -14,19 +14,12 @@ CHIP Mux4Way16 {
     OUT out[16];
     
     PARTS:
-	// Get A or D
-	And(a=sel[0], b=sel[1], out=andSel);
-	Or(a=sel[0], b=sel[1], out=orSel);
-	And(a=andSel, b=orSel, out=selAD);
-	Mux16(sel=selAD, a=a, b=d, out=firstMuxAD);
+	// Get A or B
+	Mux16(sel=sel[0], a=a, b=b, out=outAB);
 	
-	
-	// Get b or c
-	And(a=sel[1], b=sel[1], out=andSelZero);
-	Xor(a=sel[0], b=sel[1], out=xorSel);
-	And(a=andSelZero, b=xorSel, out=selBC);
-	Mux16(sel=selBC, a=b, b=c, out=secMuxBC);
+	// Get C or D
+	Mux16(sel=sel[0], a=c, b=d, out=outCD);
 	
 	// Final
-	Mux16(sel=xorSel, a=firstMuxAD, b=secMuxBC, out=out);
+	Mux16(sel=sel[1], a=outAB, b=outCD, out=out);
 }
