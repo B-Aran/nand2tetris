@@ -15,27 +15,8 @@ CHIP DMux4Way {
 
     PARTS:
 
-    // util
-    And(a=sel[0], b=sel[1], out=andSel);
-    Or(a=sel[0], b=sel[1], out=orSel);
-    Not(in=orSel, out=notOrSel);
-    Xor(a=sel[0], b=sel[1], out=xorSel);
+   DMux(in=in, sel=sel[1], a=inBranch1, b=inBranch2);
 
-    // b aux
-    And(a=xorSel, b=sel[0], out=bSel);
-
-    //c aux
-    And(a=xorSel, b=sel[1], out=cSel);
-
-    // a
-    And(a=notOrSel, b=in, out=a);
-
-    // b
-    And(a=bSel, b=in, out=b);
-
-    //c
-    And(a=cSel, b=in, out=c);
-
-    //d
-    And(a=andSel, b=in, out=d);
+   DMux(in=inBranch1, sel=sel[0], a=a, b=b);
+   DMux(in=inBranch2, sel=sel[0], a=c, b=d);
 }

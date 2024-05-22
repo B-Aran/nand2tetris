@@ -19,4 +19,17 @@ CHIP DMux8Way {
 
     PARTS:
     //// Replace this comment with your code.
+
+    DMux(in=in, sel=sel[2], a=inBranch1, b=inBranch2);
+
+    // ABCD
+    DMux(in=inBranch1, sel=sel[1], a=inBranch11, b=inBranch21);
+    DMux(in=inBranch11, sel=sel[0], a=a, b=b);
+    DMux(in=inBranch21, sel=sel[0], a=c, b=d);
+
+    // EFGH
+    DMux(in=inBranch2, sel=sel[1], a=inBranch12, b=inBranch22);
+    DMux(in=inBranch12, sel=sel[0], a=e, b=f);
+    DMux(in=inBranch22, sel=sel[0], a=g, b=h);
+    
 }
