@@ -11,5 +11,27 @@ CHIP Inc16 {
     OUT out[16];
 
     PARTS:
-    //// Replace this comment with your code.
+    //// Get the one
+    Xor(a=in[0], b=in[0], out=outXor);
+    Not(in=outXor, out=one);
+
+    // Add the one
+    //HalfAdder(a=one, b=in[0], sum=out[0], carry=outCarry0);
+    HalfAdder(a=true, b=in[0], sum=out[0], carry=outCarry0);
+
+    HalfAdder(a=outCarry0, b=in[1], sum=out[1], carry=outCarry1);
+    HalfAdder(a=outCarry1, b=in[2], sum=out[2], carry=outCarry2);
+    HalfAdder(a=outCarry2, b=in[3], sum=out[3], carry=outCarry3);
+    HalfAdder(a=outCarry3, b=in[4], sum=out[4], carry=outCarry4);
+    HalfAdder(a=outCarry4, b=in[5], sum=out[5], carry=outCarry5);
+    HalfAdder(a=outCarry5, b=in[6], sum=out[6], carry=outCarry6);
+    HalfAdder(a=outCarry6, b=in[7], sum=out[7], carry=outCarry7);
+    HalfAdder(a=outCarry7, b=in[8], sum=out[8], carry=outCarry8);
+    HalfAdder(a=outCarry8, b=in[9], sum=out[9], carry=outCarry9);
+    HalfAdder(a=outCarry9, b=in[10], sum=out[10], carry=outCarry10);
+    HalfAdder(a=outCarry10, b=in[11], sum=out[11], carry=outCarry11);
+    HalfAdder(a=outCarry11, b=in[12], sum=out[12], carry=outCarry12);
+    HalfAdder(a=outCarry12, b=in[13], sum=out[13], carry=outCarry13);
+    HalfAdder(a=outCarry13, b=in[14], sum=out[14], carry=outCarry14);
+    HalfAdder(a=outCarry14, b=in[15], sum=out[15], carry=ignored);
 }
