@@ -8,4 +8,5 @@
 // i.e. writes "black" in every pixel. When no key is pressed, 
 // the screen should be cleared.
 
+// 1/07/24 reading more
 //// Replace this comment with your code. Started reading slides Reading slides
